@@ -1,0 +1,41 @@
+{
+  "name": "framekit",
+  "version": "1.0.6",
+  "description": "FRAMEKIT Photography Toolkit",
+  "main": "dist-electron/main.js",
+  "author": "FRAMEKIT",
+  "private": true,
+  "scripts": {
+    "dev": "npm run build:ts && electron .",
+    "build:ts": "tsc",
+    "start": "npm run build:ts && electron .",
+    "dist": "npm run build:ts && electron-builder",
+    "pack": "npm run build:ts && electron-builder --dir"
+  },
+  "dependencies": {
+    "exiftool-vendored": "^31.0.0",
+    "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "electron": "^36.4.0",
+    "electron-builder": "^26.0.12",
+    "typescript": "^5.8.3"
+  },
+  "build": {
+    "appId": "com.framekit.photo-toolkit",
+    "productName": "FRAMEKIT",
+    "artifactName": "FRAMEKIT-Setup-${version}.${ext}",
+    "directories": { "output": "release" },
+    "files": ["dist-electron/**/*", "web/**/*", "package.json"],
+    "asar": true,
+    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }], "icon": "icon.png" },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "FRAMEKIT"
+    }
+  }
+}

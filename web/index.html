@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FRAMEKIT 摄影工具箱</title>
+<link rel="stylesheet" href="lib/leaflet/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="splash-screen figma-splash" id="splashScreen">
+  <svg class="figma-splash-svg" viewBox="-153 -155 306 350" role="img" aria-label="FRAMEKIT splash screen">
+    <defs>
+      <filter id="splashArcGlow" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="2.4" result="blur"></feGaussianBlur><feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter>
+      <filter id="splashGlareGlow" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="5" result="blur"></feGaussianBlur><feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter>
+      <filter id="splashAmbientBloom" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="22"></feGaussianBlur></filter>
+    </defs>
+    <g class="splash-arc-lines">
+      <path d="M 502.281 134.586 Q 242.493 145.704 91.763 24.588" style="--arc-delay:0ms"></path><path d="M 367.696 367.696 Q 137.153 247.43 67.175 67.175" style="--arc-delay:80ms"></path><path d="M 134.586 502.281 Q -4.937 282.857 24.588 91.763" style="--arc-delay:160ms"></path><path d="M -134.586 502.281 Q -145.704 242.493 -24.588 91.763" style="--arc-delay:240ms"></path><path d="M -367.696 367.696 Q -247.43 137.153 -67.175 67.175" style="--arc-delay:320ms"></path><path d="M -502.281 134.586 Q -282.857 -4.937 -91.763 24.588" style="--arc-delay:400ms"></path><path d="M -502.281 -134.586 Q -242.493 -145.704 -91.763 -24.588" style="--arc-delay:480ms"></path><path d="M -367.696 -367.696 Q -137.153 -247.43 -67.175 -67.175" style="--arc-delay:560ms"></path><path d="M -134.586 -502.281 Q 4.937 -282.857 -24.588 -91.763" style="--arc-delay:640ms"></path><path d="M 134.586 -502.281 Q 145.704 -242.493 24.588 -91.763" style="--arc-delay:720ms"></path><path d="M 367.696 -367.696 Q 247.43 -137.153 67.175 -67.175" style="--arc-delay:800ms"></path><path d="M 502.281 -134.586 Q 282.857 4.937 91.763 -24.588" style="--arc-delay:880ms"></path>
+    </g>
+    <g class="splash-lens-wireframe"><circle cx="0" cy="0" r="108" fill="#4a3210" fill-opacity=".32" filter="url(#splashAmbientBloom)"></circle><circle cx="0" cy="0" r="92" class="ring-outer"></circle><circle cx="0" cy="0" r="86" class="ring-barrel-1"></circle><circle cx="0" cy="0" r="80" class="ring-barrel-2"></circle><circle cx="0" cy="0" r="74" class="ring-aperture"></circle><circle cx="0" cy="0" r="63" class="ring-glass"></circle><circle cx="0" cy="0" r="52" class="ring-lens-1"></circle><circle cx="0" cy="0" r="40" class="ring-lens-2"></circle><circle cx="0" cy="0" r="28" class="ring-lens-3"></circle><circle cx="0" cy="0" r="13" class="ring-pupil"></circle><g class="splash-glass-ticks"><line x1="0" y1="-66.5" x2="0" y2="-59.5"></line><line x1="-46.669" y1="-46.669" x2="-41.72" y2="-41.72"></line><line x1="-66.5" y1="0" x2="-59.5" y2="0"></line><line x1="-46.669" y1="46.669" x2="-41.72" y2="41.72"></line><line x1="0" y1="66.5" x2="0" y2="59.5"></line><line x1="46.669" y1="46.669" x2="41.72" y2="41.72"></line><line x1="66.5" y1="0" x2="59.5" y2="0"></line><line x1="46.669" y1="-46.669" x2="41.72" y2="-41.72"></line></g><g class="splash-barrel-ticks"><line x1="0" y1="-94.5" x2="0" y2="-90"></line><line x1="-47.25" y1="-81.839" x2="-45" y2="-77.942"></line><line x1="-81.839" y1="-47.25" x2="-77.942" y2="-45"></line><line x1="-94.5" y1="0" x2="-90" y2="0"></line><line x1="-81.839" y1="47.25" x2="-77.942" y2="45"></line><line x1="-47.25" y1="81.839" x2="-45" y2="77.942"></line><line x1="0" y1="94.5" x2="0" y2="90"></line><line x1="47.25" y1="81.839" x2="45" y2="77.942"></line><line x1="81.839" y1="47.25" x2="77.942" y2="45"></line><line x1="94.5" y1="0" x2="90" y2="0"></line><line x1="81.839" y1="-47.25" x2="77.942" y2="-45"></line><line x1="47.25" y1="-81.839" x2="45" y2="-77.942"></line></g></g>
+    <circle cx="0" cy="0" r="63" class="splash-glare-primary"></circle><circle cx="0" cy="0" r="63" class="splash-glare-secondary"></circle>
+    <text x="0" y="122" text-anchor="middle" class="splash-brand-text">FRAMEKIT</text><line x1="-70" y1="132" x2="70" y2="132" class="splash-brand-rule"></line><text x="0" y="144" text-anchor="middle" class="splash-sub-text">PHOTOGRAPHY TOOLKIT</text>
+  </svg>
+</div>
+
+<div class="app-shell">
+  <div class="resize-handle resize-n" data-edge="n"></div><div class="resize-handle resize-e" data-edge="e"></div><div class="resize-handle resize-s" data-edge="s"></div><div class="resize-handle resize-w" data-edge="w"></div><div class="resize-handle resize-ne" data-edge="ne"></div><div class="resize-handle resize-se" data-edge="se"></div><div class="resize-handle resize-sw" data-edge="sw"></div><div class="resize-handle resize-nw" data-edge="nw"></div>
+  <aside class="sidebar">
+    <div class="side-brand">
+      <div class="brand-mark">◉</div>
+      <div><strong>FRAMEKIT</strong><span>摄影辅助工具箱</span></div>
+    </div>
+    <nav class="side-nav">
+      <button class="nav-item active" id="navHome" data-module="home"><span>⌂</span>工具箱</button>
+      <div class="nav-label">工具模块</div>
+      <button class="nav-item" id="navExif" data-module="exif"><span>✦</span>EXIF 编辑器</button>
+      <button class="nav-item" data-module="websites"><span>⌘</span>工具网址</button>
+
+    </nav>
+    <div class="side-tools">
+      <button class="nav-item" id="navSettings" data-module="settings"><span>⚙</span>设置</button>
+      
+    </div>
+    <div class="sidebar-resizer" id="sidebarResizer" title="拖动调整侧边栏宽度"></div>
+    <div class="side-footer"><span class="status-dot"></span>本地运行 · 数据不上传<br><small id="sideVersion">v1.0.6</small></div>
+  </aside>
+  <div class="app-main">
+    <header class="topbar">
+      <div class="window-brand"><span class="window-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 7l3.1 6.2L26 16l-6.9 2.8L16 25l-3.1-6.2L6 16l6.9-2.8Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="16" r="2.4" fill="currentColor"/></svg></span><b>FRAMEKIT</b><span class="window-subtitle">摄影工具箱</span></div>
+      <div class="window-actions"><button class="window-action" id="btnMinimize" aria-label="最小化">−</button><button class="window-action" id="btnMaximize" aria-label="最大化">□</button><button class="window-action close" id="btnWindowClose" aria-label="关闭">×</button></div>
+    </header>
+    <div class="browser-tabs" id="browserTabs">
+      <div class="tab-list" id="tabList"></div><button class="tab-new" id="btnNewTab" aria-label="打开工具箱主页">＋</button>
+    </div>
+    <header class="content-toolbar">
+      <div class="top-title"><span class="eyebrow">摄影工作流</span><h1 id="pageTitle">工具箱</h1></div>
+      <button class="btn primary" id="btnOpenTop" hidden><span class="plus">＋</span>打开</button>
+    </header>
+
+    <main class="settings-page" id="settingsPage" hidden>
+      <div class="settings-head"><span class="eyebrow">PREFERENCES</span><h2>设置</h2><p>调整 FRAMEKIT 的外观与使用偏好。</p></div>
+      <section class="settings-card"><div><b>界面主题</b><p>选择适合你的工作环境</p></div><div class="theme-switcher"><button class="theme-choice" data-theme="light">☼ 明亮</button><button class="theme-choice active" data-theme="dark">◐ 暗色</button></div></section>
+      <button class="settings-link" id="btnOpenAbout"><span>ⓘ</span><div><b>关于 FRAMEKIT</b><p>软件介绍、版本信息与项目地址</p></div><strong>→</strong></button>
+    </main>
+    <main class="websites-page" id="websitesPage" hidden>
+      <div class="websites-container">
+        <header class="websites-head">
+          <div><div class="websites-upper">BOOKMARKS</div><h2>工具网址</h2><p>收藏常用的摄影、设计与工作流网站。</p></div>
+          <button class="website-add-button" id="btnAddWebsite">＋ 添加网址</button>
+        </header>
+        <section class="curated-section">
+          <header class="curated-head"><div><div class="websites-upper">CURATED PICKS</div><h3>摄影网站精选</h3></div><span>点击网站打开，点击＋添加到我的网址</span></header>
+          <div class="curated-scroll-wrap"><div class="curated-marquee" id="recommendGrid"></div></div>
+        </section>
+        <section class="my-sites-section">
+          <header class="my-sites-head"><div><div class="websites-upper">MY BOOKMARKS</div><h3>我的网址</h3></div><div class="website-bulk-actions"><button id="btnSelectAllSites">全选</button><button id="btnCancelSelectSites">取消选择</button><button id="btnDeleteSites">删除</button></div></header>
+          <div class="bookmark-grid" id="websiteGrid"></div>
+        </section>
+      </div>
+    </main>
+    <div class="website-modal" id="websiteModal" hidden><div class="website-dialog"><div class="dialog-head"><b id="websiteDialogTitle">添加网址</b><button id="btnCloseWebsite" class="m-close">×</button></div><label>网站名称<input id="websiteName" placeholder="如：Unsplash"></label><label>简介<input id="websiteDesc" placeholder="一句话介绍"></label><label>网址<input id="websiteUrl" placeholder="https://example.com"></label><div class="dialog-actions"><button class="btn ghost" id="btnCancelWebsite">取消</button><button class="btn primary" id="btnSaveWebsite">保存</button></div></div></div>
+    <main class="about-page" id="aboutPage" hidden>
+      <div class="about-mark">✦</div><span class="eyebrow">ABOUT FRAMEKIT</span><h2>FRAMEKIT 摄影工具箱</h2><p>面向 PC 摄影工作流的本地工具集合，帮助你整理、检查和完善照片。</p><div class="about-meta"><span>当前版本 <b id="aboutVersion">v1.0.6</b></span><a href="https://github.com/yzh040723/Camera-exif-data-modifier" target="_blank">项目 GitHub ↗</a></div><div class="about-note">所有照片处理默认在本机完成，原图不会被自动覆盖。</div>
+    </main>
+    <main class="module-placeholder" id="modulePlaceholder" hidden>
+      <div class="placeholder-mark">⌁</div><span class="hero-kicker">MODULE IN DEVELOPMENT</span><h2 id="placeholderTitle">模块开发中</h2><p id="placeholderDescription">这个工具模块正在准备中，后续会在这里提供完整的桌面摄影工作流。</p><span class="placeholder-status">即将推出</span>
+    </main>
+    <main class="dashboard" id="dashboard">
+      <section class="hero">
+        <div><span class="hero-kicker">YOUR PHOTO WORKFLOW, ORGANIZED.</span><h2>为桌面摄影工作流，<br><em>准备一套趁手的工具。</em></h2><p>选择一个模块开始编辑照片或访问常用工具网址。</p></div>
+        <div class="hero-orbit"><div class="orbit-ring"></div><div class="aperture">✦</div><span class="orbit-label">PHOTO<br>TOOLS</span></div>
+      </section>
+      <section class="dash-head"><div><span class="eyebrow">工具箱</span><h3>选择一个工具开始</h3></div><span class="dash-date" id="dashDate"></span></section>
+      <section class="tool-grid">
+        <button class="tool-card featured" id="toolExif"><div class="tool-icon">✦</div><div class="tool-copy"><span class="tool-tag">工具模块 · 已上线</span><h4>照片 EXIF 编辑器</h4><p>修正拍摄时间、相机参数与 GPS 位置，并导出新的 JPG。</p><span class="tool-link">打开编辑器 <b>→</b></span></div></button>
+        <button class="tool-card" id="toolWebsites"><div class="tool-icon outline">⌘</div><div class="tool-copy"><span class="tool-tag">实用工具 · 已上线</span><h4>工具网址</h4><p>收藏和管理常用的摄影、设计与工作流网站。</p><span class="tool-link">打开网址库 <b>→</b></span></div></button>
+      </section>
+      <section class="workflow-note"><div class="note-icon">↗</div><div><b>从一张照片开始</b><p>拖拽 JPG 到编辑器，所有处理都在本机完成，原图始终保持不变。</p></div><span class="note-step">01 / 03</span></section>
+    </main>
+
+    <main class="dropzone" id="dropzone" hidden>
+      <svg class="dz-icon" viewBox="0 0 64 64" fill="none"><rect x="8" y="14" width="48" height="38" rx="6" stroke="currentColor" stroke-width="3.5"/><circle cx="32" cy="32" r="9" stroke="currentColor" stroke-width="3.5"/><circle cx="32" cy="32" r="3" fill="currentColor"/><path d="M20 14l4-7h16l4 7" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><path d="M41 38l10 10" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/></svg>
+      <p class="dz-title">将 JPG 照片拖到此处</p><p class="dz-sub">或点击选择文件 · 支持 .jpg / .jpeg</p><input type="file" id="fileInput" accept=".jpg,.jpeg" hidden>
+    </main>
+
+<!-- ==================== 工作区 ==================== -->
+<main class="workspace" id="workspace" hidden>
+  <!-- 左：预览 -->
+  <section class="panel preview-panel">
+    <div class="img-wrap"><img id="previewImg" alt="照片预览"></div>
+    <div class="meta">
+      <div class="meta-row"><span>文件名</span><b id="mName"></b></div>
+      <div class="meta-row"><span>尺寸</span><b id="mSize"></b></div>
+      <div class="meta-row"><span>文件大小</span><b id="mBytes"></b></div>
+      <div class="meta-row"><span>拍摄时间</span><b id="mTaken"></b></div>
+      <button class="btn ghost full" id="btnChangePhoto">更换照片</button>
+    </div>
+  </section>
+
+  <!-- 右：编辑表单 -->
+  <section class="form-panel">
+
+    <div class="card">
+      <div class="card-head">
+        <svg class="ci" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M12 7v5l3.2 3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        拍摄信息
+      </div>
+      <div class="card-body grid-2">
+        <label class="field">
+          <span class="f-label">拍摄时间 <em class="orig" id="origTakenAt"></em></span>
+          <input type="datetime-local" id="inTakenAt">
+        </label>
+        <label class="field">
+          <span class="f-label">感光度 ISO <em class="orig" id="origIso"></em></span>
+          <input type="number" id="inIso" min="25" max="204800" step="1" placeholder="如 100">
+        </label>
+        <label class="field">
+          <span class="f-label">曝光补偿 EV <em class="orig" id="origEv"></em></span>
+          <input type="number" id="inEv" step="0.1" min="-5" max="5" placeholder="如 0.3 或 -0.7">
+        </label>
+        <label class="field">
+          <span class="f-label">快门时间 <em class="orig" id="origShutter"></em></span>
+          <input type="text" id="inShutter" placeholder="如 1/125 或 0.5">
+          <div class="chips" id="shutterChips">
+            <button type="button" class="chip" data-v="1/2000">1/2000</button>
+            <button type="button" class="chip" data-v="1/500">1/500</button>
+            <button type="button" class="chip" data-v="1/125">1/125</button>
+            <button type="button" class="chip" data-v="1/30">1/30</button>
+            <button type="button" class="chip" data-v="1">1s</button>
+            <button type="button" class="chip" data-v="30">30s</button>
+          </div>
+        </label>
+        <label class="field">
+          <span class="f-label">光圈 <em class="orig" id="origAperture"></em></span>
+          <input type="number" id="inAperture" step="0.1" min="0.8" max="32" placeholder="如 2.8">
+        </label>
+        <label class="field">
+          <span class="f-label">等效焦距(mm) <em class="orig" id="origFocal35"></em></span>
+          <input type="number" id="inFocal35" step="1" min="1" max="2000" placeholder="如 50">
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <svg class="ci" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="3" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M8 6l2-2.5h4L16 6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>
+        拍摄设备
+      </div>
+      <div class="card-body grid-2">
+        <label class="field">
+          <span class="f-label">相机品牌 <em class="orig" id="origMake"></em></span>
+          <input type="text" id="inMake" placeholder="如 Canon / Sony / 华为">
+        </label>
+        <label class="field">
+          <span class="f-label">相机型号 <em class="orig" id="origModel"></em></span>
+          <input type="text" id="inModel" placeholder="如 EOS R5 / ILCE-7M4">
+        </label>
+        <label class="field">
+          <span class="f-label">机身序列号 <em class="orig" id="origSerial"></em></span>
+          <input type="text" id="inSerial" placeholder="可选">
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <svg class="ci" viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>
+        拍摄位置
+      </div>
+      <div class="card-body">
+        <div class="pos-row">
+          <div class="pos-inputs">
+            <label class="field"><span class="f-label">纬度</span>
+              <input type="text" id="inLat" readonly placeholder="未设置"></label>
+            <label class="field"><span class="f-label">经度</span>
+              <input type="text" id="inLng" readonly placeholder="未设置"></label>
+            <label class="field"><span class="f-label">海拔(米)</span>
+              <input type="number" id="inAlt" step="0.1" placeholder="可选"></label>
+          </div>
+          <div class="pos-actions">
+            <button class="btn primary" id="btnPickPos">
+              <svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              地图选择位置
+            </button>
+            <button class="btn ghost" id="btnClearPos">清除位置</button>
+          </div>
+        </div>
+        <p class="pos-note">坐标采用 GCJ-02 火星坐标系（高德），地图瓦片来自高德公开资源，搜索服务使用 OpenStreetMap Nominatim（需联网）。</p>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<!-- ==================== 导出条 ==================== -->
+<footer class="export-bar" id="exportBar" hidden>
+  <div class="exp-left">
+    <span class="exp-label">导出文件名</span>
+    <input id="inFileName" class="exp-input" value="{name}_exif.jpg" spellcheck="false">
+    <div class="exp-tpl">
+      <span class="exp-hint" id="expPreview"></span>
+      <span class="tpl-hint">模板：<code>{name}</code>原文件名 <code>{date}</code>拍摄日期 <code>{time}</code>拍摄时间 <code>{now}</code>当前时间</span>
+    </div>
+  </div>
+  <button class="btn primary big" id="btnExport">
+    <svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    导出照片
+  </button>
+</footer>
+
+<!-- ==================== 地图弹窗 ==================== -->
+<div class="modal-mask" id="mapModal" hidden>
+  <div class="modal">
+    <div class="modal-head">
+      <div class="m-title">选择拍摄地点</div>
+      <button class="m-close" id="btnCloseMap" aria-label="关闭">&times;</button>
+    </div>
+    <div class="modal-search">
+      <input id="inSearch" placeholder="搜索地名，如：北京 故宫">
+      <button class="btn" id="btnSearch">搜索</button>
+      <button class="btn ghost" id="btnLocate">
+        <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        定位
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="result-list" id="resultList" hidden></div>
+      <div id="map"></div>
+    </div>
+    <div class="modal-foot">
+      <div class="coord" id="coordText">点击地图选择位置</div>
+      <div class="modal-actions">
+        <button class="btn ghost" id="btnCancelMap">取消</button>
+        <button class="btn primary" id="btnConfirmMap" disabled>确认选择</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="lib/leaflet/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

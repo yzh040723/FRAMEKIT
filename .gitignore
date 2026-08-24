@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+
+# TypeScript / Electron build output
+dist-electron/
+out/
+
+# Electron Builder output
+release/
+.electron-cache/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+*.pid
+*.pid.lock
+
+# Coverage and test output
+coverage/
+.nyc_output/
+
+# Temporary files
+.tmp/
+tmp/
+.cache/
+*.tmp
+*.temp
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE and editor files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.user
+*.userossc
+*.sln.docstates
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Debug and crash files
+*.dmp
+crash_report*
